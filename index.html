@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cafe Delight - Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .hero-bg {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background-size: cover;
+      background-position: center;
+    }
+    .menu-item {
+      transition: transform 0.3s ease;
+    }
+    .menu-item:hover {
+      transform: scale(1.05);
+    }
+    .hidden {
+      display: none;
+    }
+    .filter-active {
+      background-color: rgb(131 24 67);
+      color: white;
+    }
+    @media (max-width: 768px) {
+      .mobile-menu {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-md fixed w-full z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a href="#home" class="text-2xl font-bold text-brown-600">Cafe Delight</a>
+        </div>
+        <div class="flex items-center space-x-8 desktop-menu">
+          <a href="#home" class="nav-link text-gray-700 hover:text-brown-600 transition-colors">Home</a>
+          <a href="#menu" class="nav-link text-gray-700 hover:text-brown-600 transition-colors">Menu & Prices</a>
+          <a href="#about" class="nav-link text-gray-700 hover:text-brown-600 transition-colors">About Us</a>
+          <a href="#contact" class="nav-link text-gray-700 hover:text-brown-600 transition-colors">Contact</a>
+        </div>
+        <div class="md:hidden flex items-center">
+          <button onclick="toggleMobileMenu()" class="text-gray-700 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden">
+        <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brown-600">Home</a>
+        <a href="#menu" onclick="toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brown-600">Menu & Prices</a>
+        <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brown-600">About Us</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-brown-600">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-bg h-screen flex items-center justify-center">
+    <div class="text-center text-white max-w-4xl px-4">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6">Welcome to<br>Cafe Delight</h1>
+      <p class="text-xl md:text-2xl mb-8">Discover the best coffee experience with fresh coffee and delicious snacks</p>
+      <a href="#menu" class="inline-block bg-brown-600 hover:bg-brown-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">Check Our Menu</a>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Menu & Prices</h2>
+
+      <!-- Filter Buttons -->
+      <div class="flex justify-center mb-8 flex-wrap gap-2">
+        <button onclick="filterMenu('all')" class="filter-btn px-4 py-2 rounded-lg bg-brown-600 text-white hover:bg-brown-700 filter-active">All</button>
+        <button onclick="filterMenu('hot-drink')" class="filter-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300">Hot Drinks</button>
+        <button onclick="filterMenu('cold-drink')" class="filter-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300">Cold Drinks</button>
+        <button onclick="filterMenu('salty-snack')" class="filter-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300">Savory Snacks</button>
+        <button onclick="filterMenu('food')" class="filter-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300">Meals</button>
+        <button onclick="filterMenu('dessert')" class="filter-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300">Desserts</button>
+      </div>
+
+      <!-- Menu Grid -->
+      <div class="space-y-12">
+
+        <!-- Hot Drinks -->
+        <div id="hot-drink" class="menu-category">
+          <h3 class="text-2xl font-semibold mb-6 text-brown-600">Hot Drinks</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cc2d8b58-bafc-4924-9c1d-37217834b1a0.png" alt="Espresso coffee cup" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Espresso</h4>
+                  <p class="text-gray-600">Strong and rich coffee experience</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$6</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/978c2c0e-a9f2-4e9f-857b-5e13ada2fa63.png" alt="Latte coffee glass" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Latte</h4>
+                  <p class="text-gray-600">Milky and creamy coffee</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$10</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8160594b-e499-45fd-8077-83dd7ec1767d.png" alt="Cappuccino coffee cup" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Cappuccino</h4>
+                  <p class="text-gray-600">Foamy and classic Italian coffee</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$6</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c099d81f-5f2c-4fd1-a15c-a07058f36973.png" alt="Americano coffee cup" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Americano</h4>
+                  <p class="text-gray-600">Espresso diluted with water</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$4</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0175cf07-308e-449b-8a7c-b72b7ac2b850.png" alt="Mocha coffee cup" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Mocha</h4>
+                  <p class="text-gray-600">Chocolate coffee delight</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$8</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0f6b4006-8537-4563-bdee-9c9010ab59f0.png" alt="Turkish tea glass" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Turkish Tea</h4>
+                  <p class="text-gray-600">Strong and aromatic classic tea</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$8</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ed4c223a-1265-4611-9c62-935ea3ef670f.png" alt="Green tea cup" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Green Tea</h4>
+                  <p class="text-gray-600">Refreshing detox tea</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$6</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2b53b815-a23a-4cca-b20e-8f6eb97ae924.png" alt="Hot chocolate cup" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Hot Chocolate</h4>
+                  <p class="text-gray-600">Rich hot chocolate drink</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$12</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cold Drinks -->
+        <div id="cold-drink" class="menu-category">
+          <h3 class="text-2xl font-semibold mb-6 text-brown-600">Cold Drinks</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/50db6f6e-c51c-44b3-a8fe-c907712e7a67.png" alt="Iced latte glass" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Iced Latte</h4>
+                  <p class="text-gray-600">Cold coffee with milk and ice</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$10</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7100e983-e69a-47b8-83cf-63ce637aed8e.png" alt="Frappuccino glass" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Frappuccino</h4>
+                  <p class="text-gray-600">Blended cold coffee drink</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$12</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fa3e7d45-106b-4cf4-a80b-d506236fb23f.png" alt="Glass of fresh fruit juice" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Fruit Juice</h4>
+                  <p class="text-gray-600">Freshly squeezed natural juice</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$8</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/be26dc6b-51d5-4512-b312-ae6c9eab5618.png" alt="Milkshake glass" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Milkshake</h4>
+                  <p class="text-gray-600">Strawberry or vanilla milkshake</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$12</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/782054a7-ace2-4110-8354-cdedabbce624.png" alt="Cappuccino shake glass" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Cappuccino Shake</h4>
+                  <p class="text-gray-600">Cold coffee milkshake</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$16</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ae3b100f-605b-4318-8e92-48f456f24c1a.png" alt="Glass of iced tea with lemon" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Iced Tea</h4>
+                  <p class="text-gray-600">Refreshing lemon iced tea</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$10</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Savory Snacks -->
+        <div id="salty-snack" class="menu-category">
+          <h3 class="text-2xl font-semibold mb-6 text-brown-600">Savory Snacks</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4b803bb1-eda8-42fd-92eb-91337693a2f1.png" alt="Turkish sesame bagel (Simit)" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Simit</h4>
+                  <p class="text-gray-600">Crispy and salty classic Turkish bagel</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$5</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1e2c57f3-4a26-4d63-94ed-3abc2a6f2cc5.png" alt="Potato chips bag" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Potato Chips</h4>
+                  <p class="text-gray-600">Crunchy and salty potato chips</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$4</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/75b7785f-87b1-4a5d-951f-9517b015f157.png" alt="Salty crackers" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Crackers</h4>
+                  <p class="text-gray-600">Salty and spiced crackers</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$6</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/82d86aaf-57a4-4f29-a421-6951694ffc4e.png" alt="Shelled peanuts" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Peanuts</h4>
+                  <p class="text-gray-600">Natural shelled peanuts</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$4</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/874a1b07-b610-4fb1-8189-06d09081d8c2.png" alt="Walnut halves" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Walnuts</h4>
+                  <p class="text-gray-600">Salty walnut halves</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$6</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foods -->
+        <div id="food" class="menu-category">
+          <h3 class="text-2xl font-semibold mb-6 text-brown-600">Meals</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4821cd14-4ec7-4383-8569-ef4be28463fd.png" alt="Chicken salad sandwich on plate" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Chicken Club Sandwich</h4>
+                  <p class="text-gray-600">Chicken, lettuce, and vegetables sandwich</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$18</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5879c7d2-501a-4b46-9527-6a5101f573cb.png" alt="Caesar salad with chicken and parmesan" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Caesar Salad</h4>
+                  <p class="text-gray-600">Chicken and parmesan crispy salad</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$12</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0556e60a-2570-4ce2-915c-a6522e3b3c59.png" alt="Slice of margarita pizza" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Margarita Pizza</h4>
+                  <p class="text-gray-600">Mozzarella, tomato, and basil</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$24</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7fe27459-14de-4533-a323-f0ef1099cee6.png" alt="Melted cheese sandwich on bread" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Grilled Cheese</h4>
+                  <p class="text-gray-600">Melted cheese on bread slices</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$14</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0b38dba3-2220-4e78-b54a-a5c0dd4460c3.png" alt="Crispy golden waffles" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Waffles</h4>
+                  <p class="text-gray-600">Golden and crispy homemade waffles</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$12</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bd6d5985-58a4-4917-bece-26f371526210.png" alt="Club sandwich with multiple layers" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Club Sandwich</h4>
+                  <p class="text-gray-600">Chicken, salad, and sauce in three layers</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$14</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desserts -->
+        <div id="dessert" class="menu-category">
+          <h3 class="text-2xl font-semibold mb-6 text-brown-600">Desserts</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d86b8711-4e5f-48c3-8dcb-612c71dfa8d4.png" alt="Slice of creamy cheesecake" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Cheesecake</h4>
+                  <p class="text-gray-600">Creamy and baked cheesecake</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$18</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f7f86563-7843-438f-add7-e70502627c69.png" alt="Piece of chocolate cake" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Chocolate Cake</h4>
+                  <p class="text-gray-600">Covered in chocolate fudge</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$12</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5edd1c3f-2414-4c73-a6de-e4779461e82e.png" alt="Layers of tiramisu with mascarpone" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Tiramisu</h4>
+                  <p class="text-gray-600">Mascarpone classic Italian dessert</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$14</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/006965b1-74a3-4da1-aae3-c57785e7ae4e.png" alt="Bowl of ice cream scoops" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Ice Cream</h4>
+                  <p class="text-gray-600">Vanilla, strawberry, or chocolate scoops</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$6</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b4958169-251d-4bd9-9a4b-3f1c4d620079.png" alt="Plate of chocolate-filled profiteroles" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Profiteroles</h4>
+                  <p class="text-gray-600">Small choux pastries filled with cream</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$12</span>
+            </div>
+            <div class="menu-item bg-gray-50 p-4 rounded-lg flex items-start justify-between">
+              <div class="flex items-start">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/dd91f811-c633-491e-86d4-4c0811c8ab43.png" alt="Slice of pistachio baklava" class="w-16 h-16 object-cover rounded mr-4" />
+                <div>
+                  <h4 class="font-medium text-lg">Baklava</h4>
+                  <p class="text-gray-600">Pistachio classic Turkish pastry</p>
+                </div>
+              </div>
+              <span class="text-brown-600 font-bold">$27</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold mb-12 text-gray-800">About Us</h2>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+          <div class="md:w-1/2">
+            <p class="text-lg text-gray-700 mb-6">Cafe Delight, located in the city center, prides itself on serving freshly ground coffee and homemade snacks. We aim to provide a comfortable environment for our customers, using high-quality ingredients to ensure an unforgettable experience.</p>
+            <p class="text-lg text-gray-700">It's the perfect place for breakfast, lunch, or evening gatherings.</p>
+          </div>
+          <div class="md:w-1/2">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/21a81f49-c8a3-4cb3-a93c-76f6c0032191.png" alt="Warm and inviting interior of a modern cafe with wooden tables, coffee machines, and comfortable seating" class="w-full h-96 object-cover rounded-lg shadow-lg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Contact & Address</h2>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-2xl font-semibold mb-6 text-brown-600">Contact Us</h3>
+          <ul class="space-y-4 text-lg text-gray-700">
+            <li class="flex items-center">
+              <svg class="w-6 h-6 mr-4 text-brown-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              Independence Avenue No: XXX, Los Angeles, California
+            </li>
+            <li class="flex items-center">
+              <svg class="w-6 h-6 mr-4 text-brown-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              </svg>
+              +1 323 XXX XXX
+            </li>
+            <li class="flex items-center">
+              <svg class="w-6 h-6 mr-4 text-brown-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              xxx@cafedelight.com
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold mb-6 text-brown-600">Our Location</h3>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423284.0444263986!2d-118.74138971424351!3d34.02060840373878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20Kaliforniya%2C%20Amerika%20Birle%C5%9Fik%20Devletleri!5e0!3m2!1str!2str!4v1756828447697!5m2!1str!2str"
+            width="100%"
+            height="300"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Cafe Delight Location"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p>© 2023 Cafe Delight. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Filter menu items
+    function filterMenu(category) {
+      const categories = ['hot-drink', 'cold-drink', 'salty-snack', 'food', 'dessert'];
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      if (category === 'all') {
+        categories.forEach(cat => {
+          document.getElementById(cat).style.display = 'block';
+        });
+        buttons.forEach(btn => {
+          if (btn.textContent === 'All') {
+            btn.classList.add('filter-active');
+            btn.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+            btn.classList.add('bg-brown-600', 'text-white', 'hover:bg-brown-700');
+          } else {
+            btn.classList.remove('filter-active', 'bg-brown-600', 'text-white', 'hover:bg-brown-700');
+            btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+          }
+        });
+      } else {
+        categories.forEach(cat => {
+          if (cat === category) {
+            document.getElementById(cat).style.display = 'block';
+          } else {
+            document.getElementById(cat).style.display = 'none';
+          }
+        });
+        buttons.forEach(btn => {
+          if (btn.textContent === 'All') {
+            btn.classList.remove('filter-active', 'bg-brown-600', 'text-white', 'hover:bg-brown-700');
+            btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+          } else if (btn.getAttribute('onclick').includes(category)) {
+            btn.classList.add('filter-active');
+            btn.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+            btn.classList.add('bg-brown-600', 'text-white', 'hover:bg-brown-700');
+          } else {
+            btn.classList.remove('filter-active', 'bg-brown-600', 'text-white', 'hover:bg-brown-700');
+            btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+          }
+        });
+      }
+    }
+
+    // Initialize filter to show all on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      filterMenu('all');
+    });
+  </script>
+</body>
+</html>
